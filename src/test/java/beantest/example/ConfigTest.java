@@ -1,4 +1,4 @@
-package hello.example;
+package beantest.example;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

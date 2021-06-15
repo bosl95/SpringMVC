@@ -1,4 +1,4 @@
-package hello.example;
+package beantest.example;
 
 import org.springframework.stereotype.Component;
 

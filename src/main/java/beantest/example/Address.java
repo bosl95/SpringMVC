@@ -1,4 +1,4 @@
-package hello.example;
+package beantest.example;
 
 public class Address {
     private String street;

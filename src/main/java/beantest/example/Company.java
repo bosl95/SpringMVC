@@ -1,4 +1,4 @@
-package hello.example;
+package beantest.example;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ public class Company {
 
     public Company(Address address) {
         this.address = address;
-        System.out.println("Company 생성 - 주소를 주입 받음 : " + address.getStreet());
+        System.out.println("Company 생성 - 주입 받음 : " + address.getStreet());
     }
 
     public Address getAddress() {
