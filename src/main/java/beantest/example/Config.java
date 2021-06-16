@@ -1,12 +1,14 @@
 package beantest.example;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
-@ComponentScan(basePackageClasses = Company.class)
+@Configuration
 public class Config {
+    public Config() {
+        System.out.println("Config 클래스 생성");
+    }
+
     @Bean
     public Address getAddress() {
         return new Address("서울시", 10101);
@@ -17,3 +19,4 @@ public class Config {
         return new Dog();
     }
 }
+

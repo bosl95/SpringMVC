@@ -7,5 +7,6 @@ class Bean1Test {
     @Test
     void name() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Bean1.class);
+        Object bean1 = context.getBean("bean1");
     }
 }
