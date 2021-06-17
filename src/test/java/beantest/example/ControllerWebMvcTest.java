@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestConstructor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -37,25 +38,6 @@ public class ControllerWebMvcTest {
                 post("/springmvc/v3/members/test/save")
                         .param("username", member.getUsername())
                         .param("age", String.valueOf(member.getAge())))
-                .andExpect(jsonPath("@.username").value(member.getUsername()));
-    }
-
-    @Test
-    void AsyncWebTest() throws Exception {
-        // given
-        Member member = new Member("pomo", 200);
-
-        // when
-        given(memberRepository.save(member)).willReturn(member);
-
-        // then
-        MvcResult result = mvc.perform(
-                post("/springmvc/v3/members/test/save/async")
-                        .param("username", member.getUsername())
-                        .param("age", String.valueOf(member.getAge())))
-                .andReturn();
-
-        mvc.perform(asyncDispatch(result))
                 .andExpect(jsonPath("@.username").value(member.getUsername()));
     }
 }
