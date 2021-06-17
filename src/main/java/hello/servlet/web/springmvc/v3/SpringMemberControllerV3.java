@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Controller
 @RequestMapping("/springmvc/v3/members")
@@ -49,8 +51,7 @@ public class SpringMemberControllerV3 {
     @PostMapping("/test/save")
     public ResponseEntity<Member> saveMember(
             @RequestParam("username") String username,
-            @RequestParam("age") int age,
-            Model model) {
+            @RequestParam("age") int age) {
 
         Member member = new Member(username, age);
         return ResponseEntity.ok(memberRepository.save(member));

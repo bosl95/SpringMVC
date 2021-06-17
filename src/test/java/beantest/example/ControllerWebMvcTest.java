@@ -9,11 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ContextConfiguration(classes = {SpringMemberControllerV3.class})
 @WebMvcTest(SpringMemberControllerV3.class)
@@ -48,10 +49,13 @@ public class ControllerWebMvcTest {
         given(memberRepository.save(member)).willReturn(member);
 
         // then
-        mvc.perform(
-                post("/springmvc/v3/members/test/save")
+        MvcResult result = mvc.perform(
+                post("/springmvc/v3/members/test/save/async")
                         .param("username", member.getUsername())
                         .param("age", String.valueOf(member.getAge())))
+                .andReturn();
+
+        mvc.perform(asyncDispatch(result))
                 .andExpect(jsonPath("@.username").value(member.getUsername()));
     }
 }
