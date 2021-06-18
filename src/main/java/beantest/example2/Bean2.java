@@ -9,6 +9,6 @@ public class Bean2 {
     }
 
     public void func() {
-        System.out.println("Bean2.func");
+        System.out.println("Bean2 생성");
     }
 }
