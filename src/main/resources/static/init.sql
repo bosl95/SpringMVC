@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS USER (
+    name TEXT,
+    age VARCHAR(20)
+);
